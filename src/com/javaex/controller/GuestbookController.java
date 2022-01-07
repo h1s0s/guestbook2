@@ -3,6 +3,7 @@ package com.javaex.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +14,7 @@ import com.javaex.dao.GuestbookDao;
 import com.javaex.vo.GuestbookVo;
 
 @WebServlet("/gbc")
-public class PhonebookController extends HttpServlet {
+public class GuestbookController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -22,16 +23,16 @@ public class PhonebookController extends HttpServlet {
 		String act = request.getParameter("action");//파라미터에서 액션을 뽑아냄
 		
 		if("addList".equals(act)) {
+			System.out.println("action=addList");
 			GuestbookDao guestbookDao = new GuestbookDao();
 			List<GuestbookVo> gList = guestbookDao.getList();
 			
-			
 			request.setAttribute("gList", gList);//이름(키값), 넣을것
 			
-			//리다이렉트
-			response.sendRedirect("/guestbook2/gbc?action=addList");
-			//=>리다이렉트는 리스폰의 메소드를 사용, 파일경로가 아닌 주소값을 넣어줌.
-		}  else if ("write".equals(act)){
+			//포워드
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/addList.jsp");//옮겨갈 경로
+			rd.forward(request, response);//이 2개를 넘긴다
+		}  else if ("add".equals(act)){
 			//파라미터 3개 꺼내온다
 			String name = request.getParameter("name");
 			String password = request.getParameter("password");
@@ -51,7 +52,13 @@ public class PhonebookController extends HttpServlet {
 			//=>리다이렉트는 리스폰의 메소드를 사용, 파일경로가 아닌 주소값을 넣어줌.
 
 		} else if ("deleteForm".equals(act)) {
-			///////////////미구현
+			int no = Integer.parseInt(request.getParameter("no"));
+			
+			request.setAttribute("no", no);//이름(키값), 넣을것
+			
+			//포워드
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/deleteForm.jsp");//옮겨갈 경로
+			rd.forward(request, response);//이 2개를 넘긴다
 			
 		} else if ("delete".equals(act)) {
 			//파라미터 꺼내온다

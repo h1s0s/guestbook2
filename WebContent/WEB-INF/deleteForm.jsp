@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.javaex.vo.GuestbookVo" %>
 <%
-	int no = Integer.parseInt(request.getParameter("no"));
+	int no = (int)request.getAttribute("no");
 %>
 <!DOCTYPE html>
 <html>
@@ -11,9 +11,10 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
-		<form action="./delete.jsp?" method="get">
+		<form action="/guestbook2/gbc" method="get">
 			<input type="hidden" name="no" value="<%= no %>">
-			비밀번호:<input type="password" name="password" value="">
+			비밀번호:<input type="password" name="password" value=""> <br>
+			<input type="text" name="action" value="delete"> <br>
 		<button type="submit">확인</button>
 		
 		</form>
