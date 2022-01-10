@@ -3,7 +3,6 @@ package com.javaex.controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,7 +30,7 @@ public class GuestbookController extends HttpServlet {
 			String content = request.getParameter("content");
 			// vo로 만든다
 			GuestbookVo guestbookVo = new GuestbookVo(name, password, content);
-			System.out.println(guestbookVo);
+			// System.out.println(guestbookVo);
 
 			// dao 메모리에 올린다
 			GuestbookDao guestbookDao = new GuestbookDao();
@@ -40,7 +39,7 @@ public class GuestbookController extends HttpServlet {
 			guestbookDao.guestbookInsert(guestbookVo);
 
 			// 리다이렉트
-			//response.sendRedirect("/guestbook2/gbc?action=addList");
+			// response.sendRedirect("/guestbook2/gbc?action=addList");
 			WebUtil.redirect(request, response, "/guestbook2/gbc?action=addList");
 			// =>리다이렉트는 리스폰의 메소드를 사용, 파일경로가 아닌 주소값을 넣어줌.
 
@@ -50,9 +49,10 @@ public class GuestbookController extends HttpServlet {
 			// request.setAttribute("no", no);//이름(키값), 넣을것
 
 			// 포워드
-			//RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/deleteForm.jsp");// 옮겨갈 경로
-			//rd.forward(request, response);// 이 2개를 넘긴다
-			WebUtil.forword(request, response, "/WEB-INF/deleteForm.jsp");
+			// RequestDispatcher rd =
+			// request.getRequestDispatcher("/WEB-INF/deleteForm.jsp");// 옮겨갈 경로
+			// rd.forward(request, response);// 이 2개를 넘긴다
+			WebUtil.forward(request, response, "/WEB-INF/deleteForm.jsp");
 		} else if ("delete".equals(act)) {
 			// 파라미터 꺼내온다
 			int no = Integer.parseInt(request.getParameter("no"));
@@ -65,9 +65,9 @@ public class GuestbookController extends HttpServlet {
 			guestbookDao.guestbookDelete(no, password);
 
 			// 리다이렉트
-			//response.sendRedirect("/guestbook2/gbc?action=addList");
+			// response.sendRedirect("/guestbook2/gbc?action=addList");
 			WebUtil.redirect(request, response, "/guestbook2/gbc?action=addList");
-			
+
 		} else {
 			GuestbookDao guestbookDao = new GuestbookDao();
 			List<GuestbookVo> gList = guestbookDao.getList();
@@ -75,9 +75,10 @@ public class GuestbookController extends HttpServlet {
 			request.setAttribute("gList", gList);// 이름(키값), 넣을것
 
 			// 포워드
-			//RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/addList.jsp");// 옮겨갈 경로
-			//rd.forward(request, response);// 이 2개를 넘긴다
-			WebUtil.forword(request, response, "/WEB-INF/addList.jsp");
+			// RequestDispatcher rd =
+			// request.getRequestDispatcher("/WEB-INF/addList.jsp");// 옮겨갈 경로
+			// rd.forward(request, response);// 이 2개를 넘긴다
+			WebUtil.forward(request, response, "/WEB-INF/addList.jsp");
 		}
 	}
 
