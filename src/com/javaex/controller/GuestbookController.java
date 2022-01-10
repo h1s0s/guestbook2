@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.javaex.dao.GuestbookDao;
 import com.javaex.vo.GuestbookVo;
 
-@WebServlet("/gbc")
+@WebServlet("/gbc") //gbc?action=addList
 public class GuestbookController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -31,6 +31,7 @@ public class GuestbookController extends HttpServlet {
 			//포워드
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/addList.jsp");//옮겨갈 경로
 			rd.forward(request, response);//이 2개를 넘긴다
+			
 		}  else if ("add".equals(act)){
 			//파라미터 3개 꺼내온다
 			String name = request.getParameter("name");
@@ -51,9 +52,9 @@ public class GuestbookController extends HttpServlet {
 			//=>리다이렉트는 리스폰의 메소드를 사용, 파일경로가 아닌 주소값을 넣어줌.
 
 		} else if ("deleteForm".equals(act)) {
-			int no = Integer.parseInt(request.getParameter("no"));
+			//int no = Integer.parseInt(request.getParameter("no"));
 			
-			request.setAttribute("no", no);//이름(키값), 넣을것
+			//request.setAttribute("no", no);//이름(키값), 넣을것
 			
 			//포워드
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/deleteForm.jsp");//옮겨갈 경로
@@ -72,6 +73,7 @@ public class GuestbookController extends HttpServlet {
 			
 			//리다이렉트
 			response.sendRedirect("/guestbook2/gbc?action=addList");
+			
 		} else {
 			System.out.println("파라미터 값 없음");
 		}
