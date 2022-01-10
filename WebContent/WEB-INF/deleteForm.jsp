@@ -19,7 +19,7 @@
 		
 		</form>
 		<p>
-			<a href="./addList.jsp">메인으로 돌아가기</a>
+			<a href="/guestbook2/gbc?action=addList">메인으로 돌아가기</a>
 		</p>
 	</body>
 </html>
