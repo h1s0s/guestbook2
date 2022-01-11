@@ -3,6 +3,7 @@ package com.javaex.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,15 +45,15 @@ public class GuestbookController extends HttpServlet {
 			// =>리다이렉트는 리스폰의 메소드를 사용, 파일경로가 아닌 주소값을 넣어줌.
 
 		} else if ("deleteForm".equals(act)) {
-			// int no = Integer.parseInt(request.getParameter("no"));
+			//int no = Integer.parseInt(request.getParameter("no"));
 
-			// request.setAttribute("no", no);//이름(키값), 넣을것
+			//request.setAttribute("no", no);//이름(키값), 넣을것
 
 			// 포워드
-			// RequestDispatcher rd =
-			// request.getRequestDispatcher("/WEB-INF/deleteForm.jsp");// 옮겨갈 경로
-			// rd.forward(request, response);// 이 2개를 넘긴다
-			WebUtil.forward(request, response, "/WEB-INF/deleteForm.jsp");
+			 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/deleteForm.jsp");// 옮겨갈 경로
+			 rd.forward(request, response);// 이 2개를 넘긴다
+			//System.out.println("action=deleteForm");
+			//WebUtil.forward(request, response, "/WEB-INF/deleteForm.jsp");
 		} else if ("delete".equals(act)) {
 			// 파라미터 꺼내온다
 			int no = Integer.parseInt(request.getParameter("no"));

@@ -18,7 +18,7 @@ public class GuestbookDao {
 	ResultSet rs = null;
 
 	private String driver = "oracle.jdbc.driver.OracleDriver";
-	private String url = "jdbc:oracle:thin:@192.168.0.62:1521:xe";
+	private String url = "jdbc:oracle:thin:@172.30.1.54:1521:xe";
 	private String id = "webdb";
 	private String pw = "webdb";
 
@@ -111,7 +111,7 @@ public class GuestbookDao {
 			// 쿼리
 			pstmt = conn.prepareStatement(query);
 
-			// 바운딩
+			// 바인딩
 			pstmt.setString(1, guestbookVo.getName());
 			pstmt.setString(2, guestbookVo.getPassword());
 			pstmt.setString(3, guestbookVo.getContent());

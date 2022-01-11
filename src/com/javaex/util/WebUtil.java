@@ -11,7 +11,7 @@ public class WebUtil {
 
 	public static void forward(HttpServletRequest request, HttpServletResponse response, String path)
 			throws ServletException, IOException {
-
+		System.out.println(path);
 		RequestDispatcher rd = request.getRequestDispatcher(path);
 		rd.forward(request, response);
 

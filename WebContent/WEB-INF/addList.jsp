@@ -8,10 +8,10 @@
 %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
 <body>
 	<!-- 등록폼영역 -->
 	<form action="/guestbook2/gbc" method="get">
